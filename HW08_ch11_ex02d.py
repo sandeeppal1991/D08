@@ -27,16 +27,53 @@ def invert_dict_old(d):
     return inverse
 
 
-def invert_dict_new(d):
-    pass
+def invert_dict_new(pledge_histogram):
+    inverse = {}
+    for key in pledge_histogram:
+        val = pledge_histogram[key]
+        inverse[val] = inverse.get(val,[]) + [key]
+    return inverse
 
 
-def print_hist_newest(d):
-    pass
+def print_hist_newest(inverse):
+    list_of_keys = sorted(inverse.keys(), reverse = False)
+    iterator = 1
+    while(iterator <= list_of_keys[-1]):
+        print("{}: {}".format(iterator,inverse.get(iterator, " ")))
+        iterator += 1
 
 ###############################################################################
 # INSERT COMPLETED CODE FROM HW08_ch11_ex02a BELOW: ###########################
 ###############################################################################
+
+pledge_histogram = {}
+
+
+def histogram_old(s):
+    d = dict()
+    for c in s:
+        if c not in d:
+            d[c] = 1
+        else:
+            d[c] += 1
+    return d
+
+
+def histogram_new(pledge_list):
+    dict_histogram = {}
+    for each_word in pledge_list:
+        dict_histogram[each_word] = dict_histogram.get(each_word,0) + 1
+    return dict_histogram
+
+
+def get_pledge_list():
+    """ Opens pledge.txt and converts to a list, each item is a word in
+    the order it appears in the original file. returns the list.
+    """
+    # Your code here.
+    with open("pledge.txt","r") as pledge:
+        pledge_list = pledge.read().split()
+    return pledge_list
 
 
 ###############################################################################
