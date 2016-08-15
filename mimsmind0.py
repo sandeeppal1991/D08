@@ -50,7 +50,8 @@ def the_game(random_number,no_of_digits):
 def main():
     no_of_digits = 1
     try:
-        no_of_digits = int(sys.argv[1])
+        if(int(sys.argv[1]) > 0):
+            no_of_digits = int(sys.argv[1])
     except:
         print("The no of digits you entered isnt a valid input. We will proceed with 1 digit for now")
     the_game(generate_random_number(no_of_digits),no_of_digits)
