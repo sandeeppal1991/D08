@@ -92,7 +92,10 @@ def the_game(random_number,no_of_digits):
         no_of_cows = get_cows(user_input_dictionary,number_as_a_dictionary) - no_of_bulls
         #if no of bulls and cows equals no of digits, number has been guessed correctly !
         if(no_of_bulls == no_of_digits):
-            print("Congratulations ! You have guessed the number in {} tries".format(try_counter))
+            if(no_of_tries == 1):
+                print("Congratulations ! You have guessed the number in {} try".format(try_counter))
+            else:
+                print("Congratulations ! You have guessed the number in {} tries".format(try_counter))
             finish_flag = True
             break
         #the below lines will execute if the number hasnt been guessed correctly
