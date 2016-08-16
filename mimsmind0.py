@@ -27,7 +27,7 @@ def the_game(random_number,no_of_digits):
     while True:
         try:
             user_input = int(user_input)
-        except
+        except:
             #exception raised if user input is not an integer
             user_input = input("Invalid Input. Try again : ")
             continue

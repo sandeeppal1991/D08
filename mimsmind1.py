@@ -34,11 +34,11 @@ def number_to_dictionary(number_as_a_list):
     for each_digit in number_as_a_list:
         dictionary[each_digit] = dictionary.get(each_digit,0) + 1
     return dictionary
-def get_cows(user_input_dictionary , number_as_a_dictionary):
-    list_of_digit_keys = user_input_dictionary.keys()
+def get_cows(user_input_as_a_list , number_as_a_list):
+    #list_of_digit_keys = user_input_dictionary.keys()
     cows_counter = 0
-    for each_key in list_of_digit_keys:
-        if(not number_as_a_dictionary.get(each_key,0) == 0):
+    for each_key in user_input_as_a_list:
+        if(each_key in number_as_a_list):
             cows_counter += 1
     return cows_counter
 
@@ -69,7 +69,7 @@ def the_game(random_number,no_of_digits):
     try_counter = 0
     #first message to user for entering a number
     user_input = input("Guess a {} digit number : ".format(no_of_digits))
-
+    finish_flag = False
     while(try_counter < no_of_tries):
         try:
             #checking if the input entered is a string
@@ -91,15 +91,16 @@ def the_game(random_number,no_of_digits):
         #looking for cows
         no_of_cows = get_cows(user_input_dictionary,number_as_a_dictionary) - no_of_bulls
         #if no of bulls and cows equals no of digits, number has been guessed correctly !
-        if(no_of_cows == no_of_digits and no_of_bulls == no_of_digits):
+        if(no_of_bulls == no_of_digits):
             print("Congratulations ! You have guessed the number in {} tries".format(try_counter))
+            finish_flag = True
             break
         #the below lines will execute if the number hasnt been guessed correctly
         user_input =input("{} bulls(s) , {} cow(s). Try again : ".format(no_of_bulls, no_of_cows))
         continue
 
     #sorry message for users who are out of tries
-    if(try_counter == no_of_tries):
+    if(try_counter == no_of_tries and not finish_flag):
         print("Sorry, you couldn't guess the number in {} tries. The number was {}".format(no_of_tries,random_number))
 
 
